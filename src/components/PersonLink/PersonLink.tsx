@@ -52,14 +52,19 @@ export const PersonLink = ({ person, findEqualName }: Props) => {
             {motherName}
           </Link>
         ) : (
-          <>{motherName ?? '-'}</>
+          <>{motherName?.trim() ? motherName : '-'}</>
         )}
       </td>
       <td>
         {isFather ? (
-          <Link to={`/people/${isFather?.slug}`}>{fatherName}</Link>
+          <Link
+            className={classNames({ 'has-text-danger': isFather?.sex === 'f' })}
+            to={`/people/${isFather?.slug}`}
+          >
+            {fatherName}
+          </Link>
         ) : (
-          <>{fatherName ?? '-'}</>
+          <>{fatherName?.trim() ? fatherName : '-'}</>
         )}
       </td>
     </tr>
