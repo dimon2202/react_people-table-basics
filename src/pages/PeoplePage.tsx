@@ -5,8 +5,8 @@ import { Person } from '../types';
 import { PeopleTable } from '../components/PeopleTable';
 
 export const PeoplePage = () => {
-  const [people, setPeople] = useState<Person[] | null>([]);
-  const [loadingPeople, setLoadingPeople] = useState(false);
+  const [people, setPeople] = useState<Person[]>([]);
+  const [loadingPeople, setLoadingPeople] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
@@ -32,11 +32,11 @@ export const PeoplePage = () => {
             </p>
           )}
 
-          {!loadingPeople && !errorMessage && people && (
+          {!loadingPeople && !errorMessage && people.length > 0 && (
             <PeopleTable people={people} />
           )}
 
-          {!loadingPeople && !errorMessage && people?.length === 0 && (
+          {!loadingPeople && !errorMessage && people.length === 0 && (
             <p data-cy="noPeopleMessage">There are no people on the server</p>
           )}
         </div>
